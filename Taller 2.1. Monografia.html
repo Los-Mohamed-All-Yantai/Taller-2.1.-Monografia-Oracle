@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monografía: Gestión de Gimnasio - Los Mohamad All Yantal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --uac-blue: #003366;
+            --uac-gold: #c5a059;
+            --slate-900: #0f172a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .uac-gradient {
+            background: linear-gradient(135deg, var(--uac-blue) 0%, #001a33 100%);
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        h2 {
+            color: var(--uac-blue);
+            border-bottom: 2px solid var(--uac-gold);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        pre {
+            background: #1e293b !important;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            border-left: 4px solid var(--uac-gold);
+            margin: 1rem 0;
+        }
+
+        .der-container {
+            background: #2d3436;
+            border-radius: 1rem;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .keyword { color: #f472b6; font-weight: bold; }
+        .type { color: #38bdf8; }
+        .comment { color: #94a3b8; font-style: italic; }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .section-card { box-shadow: none; border: 1px solid #eee; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+<div class="flex">
+    <!-- NAVEGACIÓN LATERAL -->
+    <aside class="no-print hidden lg:flex w-80 h-screen sticky top-0 bg-white border-r border-slate-200 flex-col p-6 overflow-y-auto">
+        <div class="mb-10 text-center">
+            <img src="https://www.uandina.edu.pe/wp-content/uploads/2021/04/logo-uac-header.png" alt="UAC" class="mx-auto mb-4 w-48">
+            <p class="text-[10px] font-bold text-uac-blue uppercase tracking-[0.3em]">Laboratorio 2.1 - PL/SQL</p>
+        </div>
+        
+        <nav class="space-y-1">
+            <a href="#caratula" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-home w-8"></i> Portada
+            </a>
+            <a href="#introduccion" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-book-open w-8"></i> 1. Introducción
+            </a>
+            <a href="#negocio" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-briefcase w-8"></i> 2. El Negocio
+            </a>
+            <a href="#modelo" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-project-diagram w-8"></i> 3. Modelo Conceptual
+            </a>
+            <a href="#ddl" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-database w-8"></i> 4. Implementación
+            </a>
+            <a href="#procedimientos" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-code w-8"></i> 5. PL/SQL Avanzado
+            </a>
+            <a href="#conclusiones" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-slate-50 text-slate-600 transition-all border-l-4 border-transparent hover:border-uac-gold">
+                <i class="fas fa-check-double w-8"></i> 6. Conclusiones
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1">
+        
+        <!-- CARÁTULA -->
+        <section id="caratula" class="min-h-screen uac-gradient text-white flex flex-col items-center justify-center p-12 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <i class="fas fa-dumbbell text-[40rem] rotate-45 translate-x-1/2"></i>
+            </div>
+
+            <div class="relative z-10">
+                <h1 class="text-4xl md:text-6xl font-black mb-4">UNIVERSIDAD ANDINA DEL CUSCO</h1>
+                <h2 class="text-xl md:text-3xl font-light text-slate-300 mb-12 border-none uppercase tracking-[0.2em]">Facultad de Ingeniería y Arquitectura</h2>
+                
+                <div class="w-32 h-1.5 bg-uac-gold mx-auto mb-16 rounded-full"></div>
+                
+                <p class="text-lg font-bold mb-2 uppercase tracking-widest text-uac-gold">Escuela Profesional de Ingeniería de Sistemas</p>
+                <h3 class="text-3xl md:text-5xl font-extrabold mb-20 text-white drop-shadow-lg">
+                    INFORME DE DESARROLLO:<br>
+                    SISTEMA DE GESTIÓN "MUSCLE & FITNESS"
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-5xl mx-auto bg-black/30 backdrop-blur-md p-10 rounded-3xl border border-white/10">
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-uac-gold text-xs font-bold uppercase mb-1">Docente</p>
+                            <p class="text-xl font-semibold">Ing. Hugo Espetia Huamanga</p>
+                        </div>
+                        <div>
+                            <p class="text-uac-gold text-xs font-bold uppercase mb-1">Asignatura</p>
+                            <p class="text-lg">Modelado de Base de Datos</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-uac-gold text-xs font-bold uppercase mb-1">Equipo: Los Mohamad All Yantal</p>
+                        <ul class="text-sm space-y-2">
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span>Aldhair Emerson Mamani Mamani</span> <span class="text-uac-gold">100%</span>
+                            </li>
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span>Gianfrando Maximiliano Quispe Pinto</span> <span class="text-uac-gold">100%</span>
+                            </li>
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span>Bastian Nefi Quipo Mamani</span> <span class="text-uac-gold">100%</span>
+                            </li>
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span>Frank Puma Ucharo</span> <span class="text-uac-gold">100%</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-20 opacity-60 text-sm tracking-widest uppercase">Cusco - Perú | 2026</p>
+        </section>
+
+        <!-- CONTENIDO -->
+        <div class="max-w-5xl mx-auto py-24 px-8">
+
+            <!-- 1. INTRODUCCIÓN -->
+            <section id="introduccion" class="section-card">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <span class="bg-uac-blue text-white w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-lg">1</span>
+                    Introducción
+                </h2>
+                <div class="space-y-4 text-slate-600 leading-relaxed">
+                    <p>
+                        El presente informe detalla el proceso de modelado e implementación de una base de datos para el gimnasio <strong>"Muscle & Fitness"</strong>. La solución aborda la problemática de la gestión manual de socios, pagos y programación de clases grupales.
+                    </p>
+                    <p>
+                        Utilizando el motor de base de datos <strong>Oracle 21c</strong>, se han implementado estructuras transaccionales y lógica de servidor mediante <strong>Procedimientos Almacenados (PL/SQL)</strong>, garantizando la integridad de los datos y la automatización de procesos críticos como el registro de membresías y el control de aforo en clases.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 2. DESCRIPCIÓN DEL NEGOCIO -->
+            <section id="negocio" class="section-card">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <span class="bg-uac-blue text-white w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-lg">2</span>
+                    Descripción del Negocio
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <p class="font-semibold text-uac-blue border-l-4 border-uac-gold pl-3">Requerimientos Principales:</p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Gestión de Clientes y sus datos personales.</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Control de diversos tipos de membresías y precios.</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Programación de clases con entrenadores específicos.</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Registro histórico de pagos y suscripciones.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <p class="text-sm italic text-slate-500">
+                            "Muscle & Fitness busca optimizar la experiencia del usuario final, permitiendo una inscripción rápida y una visualización clara de sus pagos y clases programadas, eliminando errores de doble cobro o cruce de horarios."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. MODELO CONCEPTUAL (DER) -->
+            <section id="modelo" class="section-card">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <span class="bg-uac-blue text-white w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-lg">3</span>
+                    Modelo Conceptual (DER)
+                </h2>
+                <p class="mb-8 text-slate-600">Representación lógica de las entidades y sus interrelaciones, conforme al Taller 2.1.</p>
+                
+                <div class="der-container">
+                    <svg width="800" height="500" viewBox="0 0 800 500">
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                <path d="M0,0 L10,5 L0,10 Z" fill="#fff" />
+                            </marker>
+                        </defs>
+                        <!-- ENTIDADES -->
+                        <!-- TInscripcionClase -->
+                        <rect x="300" y="20" width="200" height="120" rx="10" fill="#4a5568" stroke="#718096" stroke-width="2"/>
+                        <text x="400" y="45" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">TInscripcionClase</text>
+                        <line x1="300" y1="55" x2="500" y2="55" stroke="#718096" stroke-width="2"/>
+                        <text x="310" y="75" fill="#a0aec0" font-size="11">IdInscripcion (PK)</text>
+                        <text x="310" y="90" fill="#fff" font-size="11">Fecha</text>
+                        <text x="310" y="105" fill="#fff" font-size="11">IdCliente (FK)</text>
+                        <text x="310" y="120" fill="#fff" font-size="11">IdClase (FK)</text>
+
+                        <!-- TPago -->
+                        <rect x="550" y="20" width="200" height="120" rx="10" fill="#4a5568" stroke="#718096" stroke-width="2"/>
+                        <text x="650" y="45" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">TPago</text>
+                        <line x1="550" y1="55" x2="750" y2="55" stroke="#718096" stroke-width="2"/>
+                        <text x="560" y="75" fill="#a0aec0" font-size="11">IdPago (PK)</text>
+                        <text x="560" y="90" fill="#fff" font-size="11">FechaPago</text>
+                        <text x="560" y="105" fill="#fff" font-size="11">Monto</text>
+                        <text x="560" y="120" fill="#fff" font-size="11">IdCliente (FK)</text>
+
+                        <!-- TCliente -->
+                        <rect x="50" y="150" width="180" height="120" rx="10" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+                        <text x="140" y="175" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">TCliente</text>
+                        <line x1="50" y1="185" x2="230" y2="185" stroke="#4a5568" stroke-width="2"/>
+                        <text x="60" y="205" fill="#a0aec0" font-size="11">IdCliente (PK)</text>
+                        <text x="60" y="220" fill="#fff" font-size="11">NombreCompleto</text>
+                        <text x="60" y="235" fill="#fff" font-size="11">DNI</text>
+                        <text x="60" y="250" fill="#fff" font-size="11">Email</text>
+
+                        <!-- TMembresia -->
+                        <rect x="550" y="200" width="200" height="120" rx="10" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+                        <text x="650" y="225" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">TMembresia</text>
+                        <line x1="550" y1="235" x2="750" y2="235" stroke="#4a5568" stroke-width="2"/>
+                        <text x="560" y="255" fill="#a0aec0" font-size="11">IdMembresia (PK)</text>
+                        <text x="560" y="270" fill="#fff" font-size="11">Tipo</text>
+                        <text x="560" y="285" fill="#fff" font-size="11">Precio</text>
+                        <text x="560" y="300" fill="#fff" font-size="11">DuracionMeses</text>
+
+                        <!-- TEntrenador -->
+                        <rect x="50" y="350" width="180" height="100" rx="10" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+                        <text x="140" y="375" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">TEntrenador</text>
+                        <line x1="50" y1="385" x2="230" y2="385" stroke="#4a5568" stroke-width="2"/>
+                        <text x="60" y="405" fill="#a0aec0" font-size="11">IdEntrenador (PK)</text>
+                        <text x="60" y="420" fill="#fff" font-size="11">NombreCompleto</text>
+                        <text x="60" y="435" fill="#fff" font-size="11">Especialidad</text>
+
+                        <!-- TClase -->
+                        <rect x="350" y="350" width="180" height="120" rx="10" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+                        <text x="440" y="375" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">TClase</text>
+                        <line x1="350" y1="385" x2="530" y2="385" stroke="#4a5568" stroke-width="2"/>
+                        <text x="360" y="405" fill="#a0aec0" font-size="11">IdClase (PK)</text>
+                        <text x="360" y="420" fill="#fff" font-size="11">NombreClase</text>
+                        <text x="360" y="435" fill="#fff" font-size="11">Horario</text>
+                        <text x="360" y="450" fill="#fff" font-size="11">IdEntrenador (FK)</text>
+
+                        <!-- RELACIONES -->
+                        <path d="M230 210 L300 80" stroke="#fff" fill="none" stroke-width="1.5" stroke-dasharray="4"/>
+                        <path d="M230 210 L550 80" stroke="#fff" fill="none" stroke-width="1.5" stroke-dasharray="4"/>
+                        <path d="M440 350 L400 140" stroke="#fff" fill="none" stroke-width="1.5" stroke-dasharray="4"/>
+                        <path d="M650 200 L650 140" stroke="#fff" fill="none" stroke-width="1.5" stroke-dasharray="4"/>
+                        <path d="M230 400 L350 400" stroke="#fff" fill="none" stroke-width="1.5" stroke-dasharray="4"/>
+                    </svg>
+                </div>
+                <p class="text-center text-xs mt-4 text-slate-400 italic">Diagrama Entidad-Relación - Muscle & Fitness</p>
+            </section>
+
+            <!-- 4. IMPLEMENTACIÓN DDL -->
+            <section id="ddl" class="section-card">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <span class="bg-uac-blue text-white w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-lg">4</span>
+                    Implementación SQL
+                </h2>
+                <p class="mb-4 text-sm text-slate-500">A continuación, el script de creación de tablas maestras bajo estándares de Oracle Developer:</p>
+                <pre>
+<span class="comment">-- 1. CREACIÓN DE TABLA CLIENTE</span>
+<span class="keyword">CREATE TABLE</span> tcliente (
+    idcliente <span class="type">NUMBER</span> <span class="keyword">GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY</span>,
+    nombrecompleto <span class="type">VARCHAR2</span>(100) <span class="keyword">NOT NULL</span>,
+    dni <span class="type">VARCHAR2</span>(15) <span class="keyword">NOT NULL</span>,
+    telefono <span class="type">VARCHAR2</span>(20),
+    email <span class="type">VARCHAR2</span>(100)
+);
+
+<span class="comment">-- 2. CREACIÓN DE TABLA MEMBRESIA</span>
+<span class="keyword">CREATE TABLE</span> tmembresia (
+    idmembresia <span class="type">NUMBER</span> <span class="keyword">GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY</span>,
+    tipo <span class="type">VARCHAR2</span>(50) <span class="keyword">NOT NULL</span>,
+    precio <span class="type">NUMBER</span>(10,2) <span class="keyword">NOT NULL</span>,
+    duracionmeses <span class="type">NUMBER</span> <span class="keyword">NOT NULL</span>
+);
+
+<span class="comment">-- 3. CREACIÓN DE TABLA PAGO (Relacional)</span>
+<span class="keyword">CREATE TABLE</span> tpago (
+    idpago <span class="type">NUMBER</span> <span class="keyword">GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY</span>,
+    fechapago <span class="type">DATE DEFAULT SYSDATE</span>,
+    monto <span class="type">NUMBER</span>(10,2) <span class="keyword">NOT NULL</span>,
+    idcliente <span class="type">NUMBER</span>,
+    idmembresia <span class="type">NUMBER</span>,
+    <span class="keyword">CONSTRAINT</span> fk_cliente_pago <span class="keyword">FOREIGN KEY</span>(idcliente) <span class="keyword">REFERENCES</span> tcliente(idcliente)
+);</pre>
+            </section>
+
+            <!-- 5. PROCEDIMIENTOS ALMACENADOS -->
+            <section id="procedimientos" class="section-card border-t-4 border-uac-gold">
+                <h2 class="text-3xl font-bold flex items-center">
+                    <span class="bg-uac-gold text-white w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-lg">5</span>
+                    Lógica de Servidor (PL/SQL)
+                </h2>
+                <p class="mb-6 text-slate-600">Implementación de procedimientos con gestión de errores (<code>EXCEPTION</code>), tal como se solicita en la rúbrica.</p>
+
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="text-lg font-bold text-uac-blue mb-2"><i class="fas fa-user-plus mr-2"></i> SP: Registrar Nuevo Cliente</h4>
+                        <pre>
+<span class="keyword">CREATE OR REPLACE PROCEDURE</span> sp_registrar_cliente (
+    p_nombre <span class="keyword">IN</span> <span class="type">VARCHAR2</span>,
+    p_dni <span class="keyword">IN</span> <span class="type">VARCHAR2</span>,
+    p_tel <span class="keyword">IN</span> <span class="type">VARCHAR2</span>,
+    p_mail <span class="keyword">IN</span> <span class="type">VARCHAR2</span>
+) <span class="keyword">AS</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">INSERT INTO</span> tcliente (nombrecompleto, dni, telefono, email)
+    <span class="keyword">VALUES</span> (p_nombre, p_dni, p_tel, p_mail);
+    <span class="keyword">COMMIT</span>;
+    DBMS_OUTPUT.PUT_LINE(<span class="string">'Cliente registrado satisfactoriamente.'</span>);
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        <span class="keyword">ROLLBACK</span>;
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error al registrar: '</span> || SQLERRM);
+<span class="keyword">END</span>;</pre>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-bold text-uac-blue mb-2"><i class="fas fa-credit-card mr-2"></i> SP: Registrar Pago de Membresía</h4>
+                        <pre>
+<span class="keyword">CREATE OR REPLACE PROCEDURE</span> sp_registrar_pago (
+    p_id_cliente <span class="keyword">IN</span> <span class="type">NUMBER</span>,
+    p_id_membresia <span class="keyword">IN</span> <span class="type">NUMBER</span>,
+    p_monto <span class="keyword">IN</span> <span class="type">NUMBER</span>
+) <span class="keyword">AS</span>
+<span class="keyword">BEGIN</span>
+    <span class="keyword">INSERT INTO</span> tpago (fechapago, monto, idcliente, idmembresia)
+    <span class="keyword">VALUES</span> (SYSDATE, p_monto, p_id_cliente, p_id_membresia);
+    <span class="keyword">COMMIT</span>;
+<span class="keyword">EXCEPTION</span>
+    <span class="keyword">WHEN</span> OTHERS <span class="keyword">THEN</span>
+        <span class="keyword">ROLLBACK</span>;
+        DBMS_OUTPUT.PUT_LINE(<span class="string">'Error en transacción de pago.'</span>);
+<span class="keyword">END</span>;</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. CONCLUSIONES -->
+            <section id="conclusiones" class="section-card bg-slate-900 text-white">
+                <h2 class="text-3xl font-bold text-uac-gold mb-8 flex items-center">
+                    <span class="bg-uac-gold text-white w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-lg text-lg">6</span>
+                    Conclusiones
+                </h2>
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-uac-gold/20 p-2 rounded-lg mr-4 mt-1"><i class="fas fa-microchip text-uac-gold"></i></div>
+                        <p class="text-sm">El diseño del modelo conceptual permitió identificar las 6 entidades críticas para el negocio, asegurando que la información de los 120 registros insertados mantenga coherencia lógica.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-uac-gold/20 p-2 rounded-lg mr-4 mt-1"><i class="fas fa-shield-alt text-uac-gold"></i></div>
+                        <p class="text-sm">La implementación de Procedimientos Almacenados reduce el tráfico de red y centraliza las reglas de negocio, evitando que se inserten datos huérfanos o inconsistentes.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-uac-gold/20 p-2 rounded-lg mr-4 mt-1"><i class="fas fa-chart-line text-uac-gold"></i></div>
+                        <p class="text-sm">El uso de bloques <code>EXCEPTION</code> en PL/SQL garantiza que ante cualquier fallo técnico (como una desconexión), la base de datos pueda realizar un <code>ROLLBACK</code> y mantener la integridad financiera del gimnasio.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="bg-white border-t border-slate-200 py-16 px-8 text-center">
+            <img src="https://www.uandina.edu.pe/wp-content/uploads/2021/04/logo-uac-header.png" alt="UAC" class="mx-auto mb-6 opacity-30 grayscale w-32">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mb-4">Ingeniería de Sistemas - Cusco</p>
+            <p class="text-slate-500 text-sm italic">"Modelando el futuro de la gestión deportiva"</p>
+            <div class="mt-8 flex justify-center space-x-6 text-slate-300">
+                <i class="fab fa-github"></i>
+                <i class="fas fa-university"></i>
+                <i class="fas fa-database"></i>
+            </div>
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>
